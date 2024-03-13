@@ -48,6 +48,20 @@ const getCharacterMedia = async (realm, characterName) => {
   return response.data;
 };
 
+const getCharacterAchievementsSummary = async (realm, characterName) => {
+  const accessToken = await getAccessToken();
+  const url = `${BLIZZARD_API_BASE_URL}/profile/wow/character/${realm}/${characterName}/achievements?namespace=profile-eu&locale=fr_FR&access_token=${accessToken}`;
+  const response = await axios.get(url);
+  return response.data;
+};
+
+const getCharacterAchievementsStatistics = async (realm, characterName) => {
+  const accessToken = await getAccessToken();
+  const url = `${BLIZZARD_API_BASE_URL}/profile/wow/character/${realm}/${characterName}/achievements/statistics?namespace=profile-eu&locale=fr_FR&access_token=${accessToken}`;
+  const response = await axios.get(url);
+  return response.data;
+};
+
 const getTokenInfo = async () => {
   try {
     const accessToken = await getAccessToken();
@@ -60,9 +74,13 @@ const getTokenInfo = async () => {
   }
 };
 
+
+
 module.exports = {
   getAccessToken,
   getCharacterAppearance,
   getCharacterMedia,
+  getCharacterAchievementsSummary,
+  getCharacterAchievementsStatistics,
   getTokenInfo,
 };

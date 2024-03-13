@@ -24,6 +24,27 @@ router.get('/character/media/:realm/:characterName', async (req, res) => {
   }
 });
 
+router.get('/character/achievements/summary/:realm/:characterName', async (req, res) => {
+
+  try {
+    const { realm, characterName } = req.params;
+    const data = await blizzardAPI.getCharacterAchievementsSummary(realm, characterName);
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+router.get('/character/achievements/statistics/:realm/:characterName', async (req, res) => {
+
+  try {
+    const { realm, characterName } = req.params;
+    const data = await blizzardAPI.getCharacterAchievementsStatistics(realm, characterName);
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 router.get('/tokeninfo', async (req, res) => {
   try {
