@@ -2,6 +2,38 @@ const express = require('express');
 const db = require('../database');
 const router = express.Router();
 
+/**
+ * @swagger
+ * /prix:
+ *   get:
+ *     summary: Retrieve all price records
+ *     description: Returns a list of all price records in the database.
+ *     responses:
+ *       200:
+ *         description: A list of price records
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   Id_Prix:
+ *                     type: integer
+ *                     description: The ID of the price record.
+ *                   Id_Item:
+ *                     type: integer
+ *                     description: The ID of the related item.
+ *                   Prix:
+ *                     type: number
+ *                     description: The price of the item.
+ *                   Date:
+ *                     type: string
+ *                     format: date
+ *                     description: The date the price was recorded.
+ *       500:
+ *         description: Server error
+ */
 router.get('/prix', (req, res) => {
     db.query('SELECT * FROM Prix', (err, results) => {
         if (err) {
@@ -11,6 +43,43 @@ router.get('/prix', (req, res) => {
     });
 });
 
+/**
+ * @swagger
+ * /ajouterPrix:
+ *   post:
+ *     summary: Add new price records
+ *     description: Adds new price records to the database for one or more items.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                   description: The name of the item.
+ *                 price:
+ *                   type: number
+ *                   description: The price to record.
+ *     responses:
+ *       200:
+ *         description: Prices added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Les prix suivants ont été ajoutés avec succès:..."
+ *       400:
+ *         description: Validation error
+ *       500:
+ *         description: Server error
+ */
 router.post('/ajouterPrix', (req, res) => {
   const prixData = req.body;
 
