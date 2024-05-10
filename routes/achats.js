@@ -6,6 +6,8 @@ const router = express.Router();
  * @swagger
  * /api/achats:
  *   get:
+ *     tags:
+ *       - Achats
  *     summary: Récupère tous les achats
  *     description: Retourne une liste de tous les achats enregistrés dans la base de données.
  *     responses:
@@ -53,6 +55,8 @@ router.get('/achats', async (req, res) => {
  * @swagger
  * /api/ajouterAchat:
  *   post:
+ *     tags:
+ *       - Achats
  *     summary: Ajoute un nouvel achat
  *     description: Ajoute un enregistrement d'achat à la base de données.
  *     requestBody:
@@ -115,6 +119,8 @@ router.post('/ajouterAchat', async (req, res) => {
  * @swagger
  * /api/modifierAchatActive:
  *   post:
+ *     tags:
+ *       - Achats
  *     summary: Modifie le statut d'un achat
  *     description: Modifie le statut 'Active' d'un achat existant dans la base de données.
  *     requestBody:

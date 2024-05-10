@@ -6,6 +6,8 @@ const router = express.Router();
  * @swagger
  * /items:
  *   get:
+ *     tags:
+ *       - Items
  *     summary: Retrieve all items
  *     description: Returns a list of all items in the database.
  *     responses:
@@ -43,6 +45,8 @@ router.get('/items', (req, res) => {
  * @swagger
  * /ajouterItem:
  *   post:
+ *     tags:
+ *       - Items
  *     summary: Add a new item
  *     description: Adds a new item to the database.
  *     requestBody:

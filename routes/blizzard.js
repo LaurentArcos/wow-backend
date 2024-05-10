@@ -6,6 +6,8 @@ const router = express.Router();
  * @swagger
  * /character/appearance/{realm}/{characterName}:
  *   get:
+ *     tags:
+ *       - Blizzard
  *     summary: Récupère l'apparence d'un personnage
  *     description: Renvoie les détails de l'apparence d'un personnage spécifique dans le jeu.
  *     parameters:
@@ -44,6 +46,8 @@ router.get('/character/appearance/:realm/:characterName', async (req, res) => {
  * @swagger
  * /character/media/{realm}/{characterName}:
  *   get:
+ *     tags:
+ *       - Blizzard
  *     summary: Récupère les médias d'un personnage
  *     description: Renvoie les médias associés à un personnage spécifique, tels que les images.
  *     parameters:
@@ -82,6 +86,8 @@ router.get('/character/media/:realm/:characterName', async (req, res) => {
  * @swagger
  * /character/achievements/summary/{realm}/{characterName}:
  *   get:
+ *     tags:
+ *       - Blizzard
  *     summary: Récupère le résumé des succès d'un personnage
  *     description: Renvoie un résumé des succès obtenus par un personnage.
  *     parameters:
@@ -120,6 +126,8 @@ router.get('/character/achievements/summary/:realm/:characterName', async (req, 
  * @swagger
  * /character/achievements/statistics/{realm}/{characterName}:
  *   get:
+ *     tags:
+ *       - Blizzard
  *     summary: Récupère les statistiques des succès d'un personnage
  *     description: Renvoie les statistiques détaillées des succès d'un personnage.
  *     parameters:
@@ -158,6 +166,8 @@ router.get('/character/achievements/statistics/:realm/:characterName', async (re
  * @swagger
  * /tokeninfo:
  *   get:
+ *     tags:
+ *       - Blizzard
  *     summary: Retrieve the current World of Warcraft token price and last update timestamp
  *     description: Provides the current price of a World of Warcraft token along with the last updated timestamp.
  *     responses:

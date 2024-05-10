@@ -6,6 +6,8 @@ const router = express.Router();
  * @swagger
  * /prix:
  *   get:
+ *     tags:
+ *       - Prix
  *     summary: Retrieve all price records
  *     description: Returns a list of all price records in the database.
  *     responses:
@@ -47,6 +49,8 @@ router.get('/prix', (req, res) => {
  * @swagger
  * /ajouterPrix:
  *   post:
+ *     tags:
+ *       - Prix
  *     summary: Add new price records
  *     description: Adds new price records to the database for one or more items.
  *     requestBody:
