@@ -38,10 +38,10 @@ const swaggerSpec = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Application routes
-app.use('/api/blizzard', blizzardAPIRoutes);
-app.use('/api/items', itemsRoutes);
-app.use('/api/prix', prixRoutes);
-app.use('/api/achats', achatsRoutes);
+app.use('/api', blizzardAPIRoutes);
+app.use('/api', itemsRoutes);
+app.use('/api', prixRoutes);
+app.use('/api', achatsRoutes);
 
 // Gestion des erreurs
 app.use((err, req, res, next) => {
@@ -51,6 +51,6 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`🟢 Server is running on port ${PORT}`);
-  console.log(`📘 Swagger API documentation available at http://localhost:${PORT}/api-docs`);
+  console.log(`  🟢 Server is running on port ${PORT}`);
+  console.log(`  📘 Swagger API documentation available at http://localhost:${PORT}/api-docs`);
 });
