@@ -1,5 +1,11 @@
-const express = require('express');
-const blizzardAPI = require('../blizzardAPI');
+import express, { Request, Response } from 'express';
+import {
+  getCharacterAppearance,
+  getCharacterMedia,
+  getCharacterAchievementsSummary,
+  getCharacterAchievementsStatistics,
+  getTokenInfo
+} from '../blizzardAPI';
 const router = express.Router();
 
 /**
@@ -31,13 +37,12 @@ const router = express.Router();
  *             schema:
  *               type: object
  */
-router.get('/character/appearance/:realm/:characterName', async (req, res) => {
-
+router.get('/character/appearance/:realm/:characterName', async (req: Request, res: Response) => {
   try {
     const { realm, characterName } = req.params;
-    const data = await blizzardAPI.getCharacterAppearance(realm, characterName);
+    const data = await getCharacterAppearance(realm, characterName);
     res.json(data);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send(error.message);
   }
 });
@@ -71,13 +76,12 @@ router.get('/character/appearance/:realm/:characterName', async (req, res) => {
  *             schema:
  *               type: object
  */
-router.get('/character/media/:realm/:characterName', async (req, res) => {
-
+router.get('/character/media/:realm/:characterName', async (req: Request, res: Response) => {
   try {
     const { realm, characterName } = req.params;
-    const data = await blizzardAPI.getCharacterMedia(realm, characterName);
+    const data = await getCharacterMedia(realm, characterName);
     res.json(data);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send(error.message);
   }
 });
@@ -111,13 +115,12 @@ router.get('/character/media/:realm/:characterName', async (req, res) => {
  *             schema:
  *               type: object
  */
-router.get('/character/achievements/summary/:realm/:characterName', async (req, res) => {
-
+router.get('/character/achievements/summary/:realm/:characterName', async (req: Request, res: Response) => {
   try {
     const { realm, characterName } = req.params;
-    const data = await blizzardAPI.getCharacterAchievementsSummary(realm, characterName);
+    const data = await getCharacterAchievementsSummary(realm, characterName);
     res.json(data);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send(error.message);
   }
 });
@@ -151,13 +154,12 @@ router.get('/character/achievements/summary/:realm/:characterName', async (req, 
  *             schema:
  *               type: object
  */
-router.get('/character/achievements/statistics/:realm/:characterName', async (req, res) => {
-
+router.get('/character/achievements/statistics/:realm/:characterName', async (req: Request, res: Response) => {
   try {
     const { realm, characterName } = req.params;
-    const data = await blizzardAPI.getCharacterAchievementsStatistics(realm, characterName);
+    const data = await getCharacterAchievementsStatistics(realm, characterName);
     res.json(data);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send(error.message);
   }
 });
@@ -188,13 +190,13 @@ router.get('/character/achievements/statistics/:realm/:characterName', async (re
  *       500:
  *         description: Internal server error
  */
-router.get('/tokeninfo', async (req, res) => {
+router.get('/tokeninfo', async (req: Request, res: Response) => {
   try {
-    const data = await blizzardAPI.getTokenInfo();
+    const data = await getTokenInfo();
     res.json(data);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send(error.message);
   }
 });
 
-module.exports = router;
+export default router;

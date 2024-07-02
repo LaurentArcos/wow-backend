@@ -1,5 +1,5 @@
-const express = require('express');
-const db = require('../database');
+import express, { Request, Response } from 'express';
+import db from '../database';
 const router = express.Router();
 
 /**
@@ -32,7 +32,7 @@ const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.get('/items', (req, res) => {
+router.get('/items', (req: Request, res: Response) => {
     db.query('SELECT * FROM Items', (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
@@ -79,7 +79,7 @@ router.get('/items', (req, res) => {
  *       500:
  *         description: Server error
  */
-router.post('/ajouterItem', (req, res) => {
+router.post('/ajouterItem', (req: Request, res: Response) => {
     const { nom, image } = req.body;
     db.query('INSERT INTO Items (nom, image) VALUES (?, ?)', [nom, image], (err, results) => {
         if (err) {
@@ -89,4 +89,4 @@ router.post('/ajouterItem', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

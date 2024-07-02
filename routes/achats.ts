@@ -1,5 +1,5 @@
-const express = require('express');
-const db = require('../database'); 
+import express, { Request, Response } from 'express';
+import db from '../database'; 
 const router = express.Router();
 
 /**
@@ -41,14 +41,13 @@ const router = express.Router();
  *                     type: boolean
  *                     description: Statut actif de l'achat
  */
-
-router.get('/achats', async (req, res) => {
+router.get('/achats', async (req: Request, res: Response) => {
   db.query('SELECT * FROM achats', (err, results) => {
     if (err) {
         return res.status(500).json({ error: err.message });
     }
     res.json(results);
-});
+  });
 });
 
 /**
@@ -101,8 +100,7 @@ router.get('/achats', async (req, res) => {
  *       500:
  *         description: Erreur serveur
  */
-
-router.post('/ajouterAchat', async (req, res) => {
+router.post('/ajouterAchat', async (req: Request, res: Response) => {
   const { Id_Item, Quantite, PrixUnitaire, DateAchat } = req.body;
 
   db.query('INSERT INTO achats (Id_Item, Quantite, PrixUnitaire, DateAchat) VALUES (?, ?, ?, ?)', 
@@ -147,8 +145,7 @@ router.post('/ajouterAchat', async (req, res) => {
  *       500:
  *         description: Erreur serveur
  */
-
-router.post('/modifierAchatActive', async (req, res) => {
+router.post('/modifierAchatActive', async (req: Request, res: Response) => {
   const { id, active } = req.body;
   if (id == null) { 
     return res.status(400).json({ error: "L'ID de l'achat est manquant." });
@@ -162,4 +159,4 @@ router.post('/modifierAchatActive', async (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

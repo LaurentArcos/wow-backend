@@ -1,13 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
-const db = require('./database');
-const blizzardAPIRoutes = require('./routes/blizzard');
-const itemsRoutes = require('./routes/items');
-const prixRoutes = require('./routes/prix');
-const achatsRoutes = require('./routes/achats');
+import dotenv from 'dotenv';
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
+import db from './database';
+import blizzardAPIRoutes from './routes/blizzard';
+import itemsRoutes from './routes/items';
+import prixRoutes from './routes/prix';
+import achatsRoutes from './routes/achats';
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -29,7 +31,7 @@ const swaggerOptions = {
       }
     ],
   },
-  apis: ['./routes/*.js'], 
+  apis: ['./src/routes/*.ts'], 
 };
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
@@ -44,7 +46,7 @@ app.use('/api', prixRoutes);
 app.use('/api', achatsRoutes);
 
 // Gestion des erreurs
-app.use((err, req, res, next) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).send('Quelque chose a mal tourné !');
 });

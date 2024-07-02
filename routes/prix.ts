@@ -1,6 +1,7 @@
-const express = require('express');
-const db = require('../database');
+import express, { Request, Response } from 'express';
+import db from '../database';
 const router = express.Router();
+import { RowDataPacket } from 'mysql2';
 
 /**
  * @swagger
@@ -36,7 +37,7 @@ const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.get('/prix', (req, res) => {
+router.get('/prix', (req: Request, res: Response) => {
     db.query('SELECT * FROM Prix', (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
@@ -84,32 +85,35 @@ router.get('/prix', (req, res) => {
  *       500:
  *         description: Server error
  */
-router.post('/ajouterPrix', (req, res) => {
-  const prixData = req.body;
+router.post('/ajouterPrix', (req: Request, res: Response) => {
+    const prixData: { name: string; price: number }[] = req.body;
 
-  prixData.forEach(data => {
-      const { name, price } = data;
+    prixData.forEach(data => {
+        const { name, price } = data;
 
-      db.query('SELECT Id_Item FROM Items WHERE nom = ?', [name], (err, results) => {
-          if (err) {
-              return res.status(500).json({ error: err.message });
-          }
+        db.query('SELECT Id_Item FROM Items WHERE nom = ?', [name], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
 
-          if (results.length > 0) {
-              const itemId = results[0].Id_Item;
-              const today = new Date().toISOString().slice(0, 10);
+            // Cast results to the appropriate type
+            const rows = results as RowDataPacket[];
 
-              db.query('INSERT INTO Prix (Id_Item, Date, Prix) VALUES (?, ?, ?)', [itemId, today, price], (err, results) => {
-                  if (err) {
-                      return res.status(500).json({ error: err.message });
-                  }
-              });
-          }
-      });
-  }); 
-  const res_send_prix = "Les prix suivants ont été ajoutés avec succès:\n" +
-  prixData.map(data => `Nom: ${data.name}, Prix: ${data.price}`).join('\n');
-  res.send(res_send_prix);
+            if (rows.length > 0) {
+                const itemId = rows[0].Id_Item;
+                const today = new Date().toISOString().slice(0, 10);
+
+                db.query('INSERT INTO Prix (Id_Item, Date, Prix) VALUES (?, ?, ?)', [itemId, today, price], (err) => {
+                    if (err) {
+                        return res.status(500).json({ error: err.message });
+                    }
+                });
+            }
+        });
+    }); 
+    const res_send_prix = "Les prix suivants ont été ajoutés avec succès:\n" +
+        prixData.map(data => `Nom: ${data.name}, Prix: ${data.price}`).join('\n');
+    res.send(res_send_prix);
 });
 
-module.exports = router;
+export default router;
