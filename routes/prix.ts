@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import db from '../database';
-const router = express.Router();
 import { RowDataPacket } from 'mysql2';
+const router = express.Router();
 
 /**
  * @swagger
@@ -96,7 +96,6 @@ router.post('/ajouterPrix', (req: Request, res: Response) => {
                 return res.status(500).json({ error: err.message });
             }
 
-            // Cast results to the appropriate type
             const rows = results as RowDataPacket[];
 
             if (rows.length > 0) {
