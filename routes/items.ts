@@ -89,4 +89,55 @@ router.post('/ajouterItem', (req: Request, res: Response) => {
     });
 });
 
+/**
+ * @swagger
+ * /update-items-status:
+ *   post:
+ *     tags:
+ *       - Items
+ *     summary: Update the status of items
+ *     description: Update the active status of multiple items.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: The ID of the item.
+ *                 active:
+ *                   type: boolean
+ *                   description: The new active status of the item.
+ *     responses:
+ *       200:
+ *         description: Status updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Status updated successfully"
+ *       500:
+ *         description: Server error
+ */
+router.post('/update-items-status', (req: Request, res: Response) => {
+    const updates: { id: number; active: boolean }[] = req.body;
+  
+    updates.forEach(update => {
+      db.query('UPDATE Items SET active = ? WHERE Id_Item = ?', [update.active, update.id], (err) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+      });
+    });
+  
+    res.json({ message: 'Status updated successfully' });
+  });
+
 export default router;
