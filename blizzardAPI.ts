@@ -9,22 +9,6 @@ interface BlizzardAPIResponse {
   expires_in: number;
 }
 
-interface Character {
-  name: string;
-  id: number;
-  realm: {
-    name: string;
-    slug: string;
-  };
-  faction: {
-    type: "ALLIANCE" | "HORDE";
-  };
-}
-
-interface UserProfile {
-  wow_accounts: { characters: Character[] }[];
-}
-
 interface CharacterAppearance {
   // Define the structure based on the Blizzard API response
 }
@@ -68,13 +52,6 @@ const getAccessToken = async (): Promise<string | null> => {
     await getClientCredentials();
   }
   return accessToken;
-};
-
-const getUserProfile = async (): Promise<UserProfile> => {
-  const accessToken = await getAccessToken();
-  const url = `${BLIZZARD_API_BASE_URL}/profile/user/wow?namespace=profile-eu&locale=fr_FR&access_token=${accessToken}`;
-  const response = await axios.get<UserProfile>(url);
-  return response.data;
 };
 
 const getCharacterAppearance = async (realm: string, characterName: string): Promise<CharacterAppearance> => {
@@ -124,7 +101,6 @@ const getTokenInfo = async (): Promise<TokenInfo> => {
 
 export {
   getAccessToken,
-  getUserProfile,
   getCharacterAppearance,
   getCharacterMedia,
   getCharacterAchievementsSummary,
