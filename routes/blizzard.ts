@@ -1,12 +1,38 @@
 import express, { Request, Response } from 'express';
 import {
   getCharacterAppearance,
+  getUserProfile,
   getCharacterMedia,
   getCharacterAchievementsSummary,
   getCharacterAchievementsStatistics,
   getTokenInfo
 } from '../blizzardAPI';
 const router = express.Router();
+
+/**
+ * @swagger
+ * /user/profile:
+ *   get:
+ *     tags:
+ *       - Blizzard
+ *     summary: Récupère le profil utilisateur, y compris la liste des personnages
+ *     description: Renvoie les détails du profil utilisateur, y compris la liste des personnages.
+ *     responses:
+ *       200:
+ *         description: Profil utilisateur récupéré avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
+router.get('/user/profile', async (req: Request, res: Response) => {
+  try {
+    const data = await getUserProfile();
+    res.json(data);
+  } catch (error: any) {
+    res.status(500).send(error.message);
+  }
+});
 
 /**
  * @swagger
