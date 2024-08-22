@@ -8,6 +8,7 @@ import blizzardAPIRoutes from './routes/blizzard';
 import itemsRoutes from './routes/items';
 import prixRoutes from './routes/prix';
 import achatsRoutes from './routes/achats';
+import authRoutes from './routes/auth';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use('/api', blizzardAPIRoutes);
 app.use('/api', itemsRoutes);
 app.use('/api', prixRoutes);
 app.use('/api', achatsRoutes);
+app.use('/api', authRoutes);
 
 // Gestion des erreurs
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
