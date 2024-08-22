@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../database';
 import { body, validationResult } from 'express-validator';
+import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 const router = express.Router();
 
@@ -24,30 +25,30 @@ router.post('/register',
 
    try {
       // Vérifier si l'utilisateur existe déjà
-      db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
-         if (results.length > 0) {
+      db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results: RowDataPacket[]) => { // Utilisation de RowDataPacket
+        if (results.length > 0) {
             return res.status(400).json({ message: 'Cet email est déjà utilisé.' });
-         }
-
-         // Hacher le mot de passe
-         const salt = await bcrypt.genSalt(10);
-         const hashedPassword = await bcrypt.hash(password, salt);
-
-         // Insérer le nouvel utilisateur dans la base de données
-         db.query('INSERT INTO users (email, password_hash) VALUES (?, ?)', 
-         [email, hashedPassword], (err, result) => {
+        }
+    
+        // Hacher le mot de passe
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+    
+        // Insérer le nouvel utilisateur dans la base de données
+        db.query('INSERT INTO users (email, password_hash) VALUES (?, ?)', 
+        [email, hashedPassword], (err, result: ResultSetHeader) => { // Utilisation de ResultSetHeader
             if (err) {
-               return res.status(500).json({ message: 'Erreur lors de la création de l\'utilisateur.' });
+                return res.status(500).json({ message: 'Erreur lors de la création de l\'utilisateur.' });
             }
-
+    
             // Créer et retourner un token JWT
             const token = jwt.sign({ id: result.insertId, email }, process.env.JWT_SECRET!, {
-               expiresIn: '1h',
+                expiresIn: '1h',
             });
-
+    
             res.status(201).json({ token });
-         });
-      });
+        });
+    });
    } catch (err) {
       res.status(500).json({ message: 'Erreur serveur.' });
    }
@@ -68,26 +69,26 @@ router.post('/login',
 
    try {
       // Vérifier si l'utilisateur existe
-      db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
-         if (results.length === 0) {
+      db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results: RowDataPacket[]) => {
+        if (results.length === 0) {
             return res.status(400).json({ message: 'Email ou mot de passe incorrect.' });
-         }
-
-         const user = results[0];
-
-         // Vérifier le mot de passe
-         const isMatch = await bcrypt.compare(password, user.password_hash);
-         if (!isMatch) {
+        }
+    
+        const user = results[0];
+    
+        // Vérifier le mot de passe
+        const isMatch = await bcrypt.compare(password, user.password_hash);
+        if (!isMatch) {
             return res.status(400).json({ message: 'Email ou mot de passe incorrect.' });
-         }
-
-         // Créer et retourner un token JWT
-         const token = jwt.sign({ id: user.id, email }, process.env.JWT_SECRET!, {
+        }
+    
+        // Créer et retourner un token JWT
+        const token = jwt.sign({ id: user.id, email }, process.env.JWT_SECRET!, {
             expiresIn: '1h',
-         });
-
-         res.json({ token });
-      });
+        });
+    
+        res.json({ token });
+    });
    } catch (err) {
       res.status(500).json({ message: 'Erreur serveur.' });
    }
