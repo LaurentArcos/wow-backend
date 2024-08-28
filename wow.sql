@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 22 août 2024 à 11:58
+-- Généré le : mer. 28 août 2024 à 16:36
 -- Version du serveur : 8.0.31
 -- Version de PHP : 7.4.33
 
@@ -44,39 +44,39 @@ CREATE TABLE IF NOT EXISTS `achats` (
 --
 
 INSERT INTO `achats` (`Id_Achat`, `Id_Item`, `Quantite`, `PrixUnitaire`, `DateAchat`, `Active`) VALUES
-(1, 1, 1000, '62.25', '2024-01-01', 1),
-(2, 1, 2000, '53.00', '2024-01-01', 1),
-(3, 1, 1000, '45.50', '2024-01-01', 1),
-(4, 1, 200, '42.00', '2024-01-01', 1),
+(1, 1, 1000, '62.25', '2024-01-01', 0),
+(2, 1, 2000, '53.00', '2024-01-01', 0),
+(3, 1, 1000, '45.50', '2024-01-01', 0),
+(4, 1, 200, '42.00', '2024-01-01', 0),
 (5, 16, 1000, '6.39', '2024-01-03', 0),
 (6, 4, 30, '12.00', '2024-01-07', 0),
 (7, 3, 70, '22.00', '2024-01-07', 0),
 (8, 17, 500, '1.91', '2024-01-07', 0),
 (9, 3, 1300, '26.00', '2024-01-08', 0),
 (10, 29, 500, '149.80', '2024-01-08', 0),
-(11, 5, 1000, '19.00', '2024-01-08', 1),
+(11, 5, 1000, '19.00', '2024-01-08', 0),
 (12, 6, 100, '180.00', '2024-01-09', 0),
-(13, 5, 1000, '16.93', '2024-01-10', 1),
-(14, 1, 1000, '41.42', '2024-01-10', 1),
+(13, 5, 1000, '16.93', '2024-01-10', 0),
+(14, 1, 1000, '41.42', '2024-01-10', 0),
 (15, 29, 300, '129.88', '2024-01-10', 0),
 (16, 12, 500, '96.72', '2024-01-11', 0),
-(17, 1, 1000, '38.95', '2024-01-12', 1),
+(17, 1, 1000, '38.95', '2024-01-12', 0),
 (18, 12, 500, '94.93', '2024-01-12', 0),
 (19, 4, 1000, '18.15', '2024-01-14', 0),
-(20, 1, 500, '31.99', '2024-01-14', 1),
+(20, 1, 500, '31.99', '2024-01-14', 0),
 (21, 0, 200, '150.00', '2024-01-15', 0),
 (22, 6, 200, '150.00', '2024-01-15', 0),
 (23, 28, 700, '75.90', '2024-01-16', 0),
-(24, 1, 300, '21.80', '2024-01-18', 1),
-(25, 1, 1000, '15.88', '2024-01-22', 1),
+(24, 1, 300, '21.80', '2024-01-18', 0),
+(25, 1, 1000, '15.88', '2024-01-22', 0),
 (26, 6, 200, '103.00', '2024-01-24', 0),
-(27, 2, 100, '61.98', '2024-02-02', 1),
-(28, 2, 500, '57.00', '2024-02-19', 1),
+(27, 2, 100, '61.98', '2024-02-02', 0),
+(28, 2, 500, '57.00', '2024-02-19', 0),
 (29, 8, 1000, '33.72', '2024-02-28', 0),
-(30, 16, 1000, '2.43', '2024-03-09', 1),
-(31, 2, 300, '49.00', '2024-03-14', 1),
-(32, 23, 1000, '3.45', '2024-04-28', 1),
-(33, 10, 1000, '9.21', '2024-05-08', 1);
+(30, 16, 1000, '2.43', '2024-03-09', 0),
+(31, 2, 300, '49.00', '2024-03-14', 0),
+(32, 23, 1000, '3.45', '2024-04-28', 0),
+(33, 10, 1000, '9.21', '2024-05-08', 0);
 
 -- --------------------------------------------------------
 
@@ -91,50 +91,107 @@ CREATE TABLE IF NOT EXISTS `items` (
   `image` varchar(255) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Item`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `items`
 --
 
 INSERT INTO `items` (`Id_Item`, `nom`, `image`, `active`) VALUES
-(1, 'Corne de vorquin en parfait état', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_specialization_leatherworking_pristinevorquinhorn_color2.jpg', 1),
-(2, 'Dorade nageoire-des-îles', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishice_color2.jpg', 1),
-(3, 'Bondisseur prismatique', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_92.jpg', 1),
-(4, 'Batteur de magma', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishlava_color1.jpg', 1),
-(5, 'Thon frimageoire gelé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishice_color1.jpg', 1),
-(6, 'Peau écailleuse lustrée Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 1),
-(7, 'Peau écailleuse lustrée Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 1),
-(8, 'Peau écailleuse lustrée Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 1),
-(9, 'Tendon de haut-trotteur', 'https://render.worldofwarcraft.com/eu/icons/56/inv_leatherworking_90_sinew.jpg', 1),
-(10, 'Putréfaction agitée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_decay.jpg', 1),
-(11, 'Putréfaction éveillée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_decay.jpg', 1),
-(12, 'Givre éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_frost.jpg', 1),
-(13, 'Givre agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_frost.jpg', 1),
-(14, 'Œufs de basilic', 'https://render.worldofwarcraft.com/eu/icons/56/inv_falcosauregg_purple.jpg', 1),
-(15, 'Hanneton de lave', 'https://render.worldofwarcraft.com/eu/icons/56/inv_inscription_pigment_bug04.jpg', 1),
-(16, 'Écaille-de-tonnerre cacophonique', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_rubysanctum1.jpg', 1),
-(17, 'Peau imprégnée de feu', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_leather_curedleather_fire.jpg', 1),
-(18, 'Terre agitée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_earth.jpg', 1),
-(19, 'Terre éveillée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_earth.jpg', 1),
-(20, 'Ordre éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_titan.jpg', 1),
-(21, 'Ordre agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_titan.jpg', 1),
-(22, 'Feu éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_fire.jpg', 1),
-(23, 'Feu agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_fire.jpg', 1),
-(24, 'Air éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_air.jpg', 1),
-(25, 'Air agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_air.jpg', 1),
-(26, 'Spores luisantes de Zaralek', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_gathering_bioluminescentspores_medium.jpg', 1),
-(27, 'Grand banquet des Kalu’aks', 'https://render.worldofwarcraft.com/eu/icons/56/inv_cooking_10_grandbanquet.jpg', 1),
-(28, 'Viande de Rohart séchée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_legion_driedmackerelstrips.jpg', 1),
-(29, 'Spécialité maison de Gnolan', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_154_fish_77.jpg', 1),
-(30, 'Plumage chantevent', 'https://render.worldofwarcraft.com/eu/icons/56/inv_icon_feather01a.jpg', 1),
-(31, 'Viande surgelée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_155_fish_78blue.jpg', 1),
-(32, 'Essence d’ombreflamme', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_shadowflame.jpg', 1),
-(33, 'Plume iridescente', 'https://render.worldofwarcraft.com/eu/icons/56/inv_icon_feather05d.jpg', 1),
-(34, 'Cuir de rochecroc', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_pelt_04.jpg', 1),
-(35, 'Courroux éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_blood.jpg', 1),
-(36, 'Courroux agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_blood.jpg', 1),
-(43, 'Touffe de laine primordiale', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_pelt_10.jpg', 1);
+(1, 'Corne de vorquin en parfait état', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_specialization_leatherworking_pristinevorquinhorn_color2.jpg', 0),
+(2, 'Dorade nageoire-des-îles', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishice_color2.jpg', 0),
+(3, 'Bondisseur prismatique', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_92.jpg', 0),
+(4, 'Batteur de magma', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishlava_color1.jpg', 0),
+(5, 'Thon frimageoire gelé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishice_color1.jpg', 0),
+(6, 'Peau écailleuse lustrée Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 0),
+(7, 'Peau écailleuse lustrée Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 0),
+(8, 'Peau écailleuse lustrée Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_dragonscales_bronze.jpg', 0),
+(9, 'Tendon de haut-trotteur', 'https://render.worldofwarcraft.com/eu/icons/56/inv_leatherworking_90_sinew.jpg', 0),
+(10, 'Putréfaction agitée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_decay.jpg', 0),
+(11, 'Putréfaction éveillée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_decay.jpg', 0),
+(12, 'Givre éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_frost.jpg', 0),
+(13, 'Givre agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_frost.jpg', 0),
+(14, 'Œufs de basilic', 'https://render.worldofwarcraft.com/eu/icons/56/inv_falcosauregg_purple.jpg', 0),
+(15, 'Hanneton de lave', 'https://render.worldofwarcraft.com/eu/icons/56/inv_inscription_pigment_bug04.jpg', 0),
+(16, 'Écaille-de-tonnerre cacophonique', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_rubysanctum1.jpg', 0),
+(17, 'Peau imprégnée de feu', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_skinning_leather_curedleather_fire.jpg', 0),
+(18, 'Terre agitée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_earth.jpg', 0),
+(19, 'Terre éveillée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_earth.jpg', 0),
+(20, 'Ordre éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_titan.jpg', 0),
+(21, 'Ordre agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_titan.jpg', 0),
+(22, 'Feu éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_fire.jpg', 0),
+(23, 'Feu agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_fire.jpg', 0),
+(24, 'Air éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_air.jpg', 0),
+(25, 'Air agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_air.jpg', 0),
+(26, 'Spores luisantes de Zaralek', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_gathering_bioluminescentspores_medium.jpg', 0),
+(27, 'Grand banquet des Kalu’aks', 'https://render.worldofwarcraft.com/eu/icons/56/inv_cooking_10_grandbanquet.jpg', 0),
+(28, 'Viande de Rohart séchée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_legion_driedmackerelstrips.jpg', 0),
+(29, 'Spécialité maison de Gnolan', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_154_fish_77.jpg', 0),
+(30, 'Plumage chantevent', 'https://render.worldofwarcraft.com/eu/icons/56/inv_icon_feather01a.jpg', 0),
+(31, 'Viande surgelée', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_food_155_fish_78blue.jpg', 0),
+(32, 'Essence d’ombreflamme', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_shadowflame.jpg', 0),
+(33, 'Plume iridescente', 'https://render.worldofwarcraft.com/eu/icons/56/inv_icon_feather05d.jpg', 0),
+(34, 'Cuir de rochecroc', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_pelt_04.jpg', 0),
+(35, 'Courroux éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalcombinedfoozles_blood.jpg', 0),
+(36, 'Courroux agité', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_elementalshardfoozles_blood.jpg', 0),
+(43, 'Touffe de laine primordiale', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_pelt_10.jpg', 0),
+(44, 'Champifleur Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_mycobloom.jpg', 1),
+(45, 'Champifleur Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_mycobloom.jpg', 1),
+(46, 'Champifleur Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_mycobloom.jpg', 1),
+(47, 'Pose-appât Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_luredrop.jpg', 1),
+(48, 'Pose-appât Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_luredrop.jpg', 1),
+(49, 'Pose-appât Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_luredrop.jpg', 1),
+(50, 'Hémitriptère hérissé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fishpterois_orange.jpg', 1),
+(51, 'Cuir chargé par la tempête Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_stormchargedleather2.jpg', 1),
+(52, 'Cuir chargé par la tempête Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_stormchargedleather2.jpg', 1),
+(53, 'Cuir chargé par la tempête Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_stormchargedleather2.jpg', 1),
+(54, 'Peau tonnante Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_thunderoushide1.jpg', 1),
+(55, 'Peau tonnante Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_thunderoushide1.jpg', 1),
+(56, 'Peau tonnante Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_thunderoushide1.jpg', 1),
+(57, 'Tempête en bouteille', 'https://render.worldofwarcraft.com/eu/icons/56/spell_nature_unrelentingstorm.jpg', 1),
+(58, 'Chitine sinistre Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(59, 'Chitine sinistre Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(60, 'Chitine sinistre Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(61, 'Carapace sans-soleil Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(62, 'Carapace sans-soleil Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(63, 'Carapace sans-soleil Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin.jpg', 1),
+(64, 'Chitine d’essaim kaheti', 'https://render.worldofwarcraft.com/eu/icons/56/inv_12_skinning_gloomchitin1.jpg', 1),
+(65, 'Orbinide Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_orbinid.jpg', 1),
+(66, 'Orbinide Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_orbinid.jpg', 1),
+(67, 'Orbinide Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_orbinid.jpg', 1),
+(68, 'Floraison bénie Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_blessingblossom.jpg', 1),
+(69, 'Floraison bénie Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_blessingblossom.jpg', 1),
+(70, 'Floraison bénie Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_blessingblossom.jpg', 1),
+(71, 'Lance d’Arathor Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_arathorsspear.jpg', 1),
+(72, 'Lance d’Arathor Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_arathorsspear.jpg', 1),
+(73, 'Lance d’Arathor Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_herb_arathorsspear.jpg', 1),
+(74, 'Mulet perlé traînard', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fishpterois_blue.jpg', 1),
+(75, 'Perche sanglante', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_22.jpg', 1),
+(76, 'Esturgeon cristallin', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fishing_f_sturgeon3.jpg', 1),
+(77, 'Rhodeus bismuth', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fish_cursedqueenfishgreen.jpg', 1),
+(78, 'Brochet de Dorn', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_93.jpg', 1),
+(79, 'Vairon grignoteur', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_92.jpg', 1),
+(80, 'Mirétoile murmurant', 'https://render.worldofwarcraft.com/eu/icons/56/inv_nzothfish_green.jpg', 1),
+(81, 'Poisson arc-en-ciel spéculaire', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_73.jpg', 1),
+(82, 'Bar muet des rivières', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_90.jpg', 1),
+(83, 'Cherchepêche rugissant', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_79.jpg', 1),
+(84, 'Poisson-marteau d’Arathor', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_87.jpg', 1),
+(85, 'Poisson-coque pâle', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fishing_f_whiptail1.jpg', 1),
+(86, 'Truite à branchies dorées', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_43.jpg', 1),
+(87, 'Requin-misère kaheti', 'https://render.worldofwarcraft.com/eu/icons/56/inv_fishmount.jpg', 1),
+(88, 'Pseudochromide', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_99.jpg', 1),
+(89, 'Roussette sanguine', 'https://render.worldofwarcraft.com/eu/icons/56/inv_10_fishing_fishdragon_red.jpg', 1),
+(90, 'Poisson-appât de la reine', 'https://render.worldofwarcraft.com/eu/icons/56/inv_misc_fish_34.jpg', 1),
+(91, 'Cœlacanthe éveillé', 'https://render.worldofwarcraft.com/eu/icons/56/inv_deepseafish.jpg', 1),
+(92, 'Bismuth Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_bismuth.jpg', 1),
+(93, 'Bismuth Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_bismuth.jpg', 1),
+(94, 'Bismuth Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_bismuth.jpg', 1),
+(95, 'Minerai de griffefer Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_ironclaw_normal.jpg', 1),
+(96, 'Minerai de griffefer Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_ironclaw_normal.jpg', 1),
+(97, 'Minerai de griffefer Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_ironclaw_normal.jpg', 1),
+(98, 'Aqirite Niveau 1', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_nerubian_red.jpg', 1),
+(99, 'Aqirite Niveau 2', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_nerubian_red.jpg', 1),
+(100, 'Aqirite Niveau 3', 'https://render.worldofwarcraft.com/eu/icons/56/inv_ore_nerubian_red.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `prix` (
   `Prix` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`Id_Prix`),
   KEY `Id_Item` (`Id_Item`)
-) ENGINE=MyISAM AUTO_INCREMENT=4535 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `prix`
@@ -4611,7 +4668,51 @@ INSERT INTO `prix` (`Id_Prix`, `Id_Item`, `Date`, `Prix`) VALUES
 (4531, 34, '2024-08-17', '4.39'),
 (4532, 35, '2024-08-17', '199.00'),
 (4533, 36, '2024-08-17', '19.00'),
-(4534, 43, '2024-08-17', '350.00');
+(4534, 43, '2024-08-17', '350.00'),
+(4535, 1, '2024-08-26', '0.60'),
+(4536, 2, '2024-08-26', '1.64'),
+(4537, 3, '2024-08-26', '0.15'),
+(4538, 4, '2024-08-26', '0.50'),
+(4539, 5, '2024-08-26', '0.37'),
+(4540, 6, '2024-08-26', '4.00'),
+(4541, 8, '2024-08-26', '1.34'),
+(4542, 7, '2024-08-26', '0.90'),
+(4543, 9, '2024-08-26', '376.00'),
+(4544, 10, '2024-08-26', '0.85'),
+(4545, 11, '2024-08-26', '14.84'),
+(4546, 12, '2024-08-26', '9.99'),
+(4547, 13, '2024-08-26', '0.98'),
+(4548, 14, '2024-08-26', '0.24'),
+(4549, 15, '2024-08-26', '0.03'),
+(4550, 16, '2024-08-26', '0.45'),
+(4551, 17, '2024-08-26', '0.05'),
+(4552, 18, '2024-08-26', '1.67'),
+(4553, 19, '2024-08-26', '10.90'),
+(4554, 20, '2024-08-26', '58.00'),
+(4555, 21, '2024-08-26', '4.90'),
+(4556, 22, '2024-08-26', '27.00'),
+(4557, 23, '2024-08-26', '5.20'),
+(4558, 24, '2024-08-26', '7.99'),
+(4559, 25, '2024-08-26', '0.88'),
+(4560, 26, '2024-08-26', '0.20'),
+(4561, 27, '2024-08-26', '1.11'),
+(4562, 28, '2024-08-26', '47.00'),
+(4563, 29, '2024-08-26', '173.50'),
+(4564, 30, '2024-08-26', '8.99'),
+(4565, 31, '2024-08-26', '112.00'),
+(4566, 32, '2024-08-26', '95.00'),
+(4567, 33, '2024-08-26', '3.36'),
+(4568, 34, '2024-08-26', '1.67'),
+(4569, 35, '2024-08-26', '80.23'),
+(4570, 36, '2024-08-26', '5.90'),
+(4571, 43, '2024-08-26', '129.00'),
+(4572, 44, '2024-08-27', '19.24'),
+(4573, 45, '2024-08-27', '27.17'),
+(4574, 46, '2024-08-27', '49.11'),
+(4575, 50, '2024-08-27', '14.50'),
+(4576, 47, '2024-08-27', '125.00'),
+(4577, 48, '2024-08-27', '115.99'),
+(4578, 49, '2024-08-27', '398.99');
 
 -- --------------------------------------------------------
 
@@ -4629,7 +4730,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`(191))
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password_hash`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Thryndil', '$2a$10$Wihl0d0a4CooTuutTUGuN.mQp07laa4Nc3bWivoAQE4oi3k9IuVR6', 'user', '2024-08-23 09:15:04', '2024-08-23 09:15:04');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
