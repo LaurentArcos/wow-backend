@@ -9,7 +9,7 @@ const router = express.Router();
  *     tags:
  *       - Items
  *     summary: Retrieve all items
- *     description: Returns a list of all items in the database.
+ *     description: Returns a list of all items in the database, including their extension and type.
  *     responses:
  *       200:
  *         description: A list of items
@@ -29,6 +29,15 @@ const router = express.Router();
  *                   image:
  *                     type: string
  *                     description: The URL of the item's image.
+ *                   active:
+ *                     type: boolean
+ *                     description: The active status of the item.
+ *                   extension:
+ *                     type: string
+ *                     description: The expansion in which the item was added.
+ *                   type:
+ *                     type: string
+ *                     description: The type of the item.
  *       500:
  *         description: Server error
  */
@@ -48,7 +57,7 @@ router.get('/items', (req: Request, res: Response) => {
  *     tags:
  *       - Items
  *     summary: Add a new item
- *     description: Adds a new item to the database.
+ *     description: Adds a new item to the database with extension and type.
  *     requestBody:
  *       required: true
  *       content:
@@ -58,6 +67,8 @@ router.get('/items', (req: Request, res: Response) => {
  *             required:
  *               - nom
  *               - image
+ *               - extension
+ *               - type
  *             properties:
  *               nom:
  *                 type: string
@@ -65,6 +76,12 @@ router.get('/items', (req: Request, res: Response) => {
  *               image:
  *                 type: string
  *                 description: The URL of the item's image.
+ *               extension:
+ *                 type: string
+ *                 description: The expansion in which the item was added.
+ *               type:
+ *                 type: string
+ *                 description: The type of the item.
  *     responses:
  *       200:
  *         description: New item added successfully
@@ -80,8 +97,8 @@ router.get('/items', (req: Request, res: Response) => {
  *         description: Server error
  */
 router.post('/ajouterItem', (req: Request, res: Response) => {
-    const { nom, image } = req.body;
-    db.query('INSERT INTO Items (nom, image) VALUES (?, ?)', [nom, image], (err, results) => {
+    const { nom, image, extension, type } = req.body;
+    db.query('INSERT INTO Items (nom, image, extension, type) VALUES (?, ?, ?, ?)', [nom, image, extension, type], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -138,6 +155,6 @@ router.post('/update-items-status', (req: Request, res: Response) => {
     });
   
     res.json({ message: 'Status updated successfully' });
-  });
+});
 
 export default router;
