@@ -42,7 +42,7 @@ const router = express.Router();
  *         description: Server error
  */
 router.get('/items', (req: Request, res: Response) => {
-    db.query('SELECT * FROM Items', (err, results) => {
+    db.query('SELECT * FROM items', (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -98,7 +98,7 @@ router.get('/items', (req: Request, res: Response) => {
  */
 router.post('/ajouterItem', (req: Request, res: Response) => {
     const { nom, image, extension, type } = req.body;
-    db.query('INSERT INTO Items (nom, image, extension, type) VALUES (?, ?, ?, ?)', [nom, image, extension, type], (err, results) => {
+    db.query('INSERT INTO items (nom, image, extension, type) VALUES (?, ?, ?, ?)', [nom, image, extension, type], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -147,7 +147,7 @@ router.post('/update-items-status', (req: Request, res: Response) => {
     const updates: { id: number; active: boolean }[] = req.body;
   
     updates.forEach(update => {
-      db.query('UPDATE Items SET active = ? WHERE Id_Item = ?', [update.active, update.id], (err) => {
+      db.query('UPDATE items SET active = ? WHERE Id_Item = ?', [update.active, update.id], (err) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }

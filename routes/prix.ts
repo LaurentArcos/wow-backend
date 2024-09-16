@@ -38,7 +38,7 @@ const router = express.Router();
  *         description: Server error
  */
 router.get('/prix', (req: Request, res: Response) => {
-    db.query('SELECT * FROM Prix', (err, results) => {
+    db.query('SELECT * FROM prix', (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -91,7 +91,7 @@ router.post('/ajouterPrix', (req: Request, res: Response) => {
     prixData.forEach(data => {
         const { name, price } = data;
 
-        db.query('SELECT Id_Item FROM Items WHERE nom = ?', [name], (err, results) => {
+        db.query('SELECT Id_Item FROM items WHERE nom = ?', [name], (err, results) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
@@ -102,7 +102,7 @@ router.post('/ajouterPrix', (req: Request, res: Response) => {
                 const itemId = rows[0].Id_Item;
                 const today = new Date().toISOString().slice(0, 10);
 
-                db.query('INSERT INTO Prix (Id_Item, Date, Prix) VALUES (?, ?, ?)', [itemId, today, price], (err) => {
+                db.query('INSERT INTO prix (Id_Item, Date, Prix) VALUES (?, ?, ?)', [itemId, today, price], (err) => {
                     if (err) {
                         return res.status(500).json({ error: err.message });
                     }
