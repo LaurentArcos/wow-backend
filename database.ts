@@ -1,27 +1,10 @@
-// import mysql from 'mysql2';
-
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'wow'
-// });
-
-// connection.connect(error => {
-//   if (error) throw error;
-//   console.log("  🔗 Connected to the database.");
-// });
-
-// export default connection;
-
-
  import mysql from 'mysql2';
 
  const connection = mysql.createConnection({
-   host: 'localhost',
-   user: 'thryndil',
-   password: 'DeepiKaynaat17!',
-   database: 'wow'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'wow',
  });
 
  connection.connect(error => {
