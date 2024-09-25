@@ -14,8 +14,8 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-// app.use(cors({ origin: 'http://localhost:5173', optionsSuccessStatus: 200 }));
-app.use(cors({ origin: 'https://wow-helper.laurentarcos.fr', optionsSuccessStatus: 200 }));
+app.use(cors({ origin: 'http://localhost:5173', optionsSuccessStatus: 200 }));
+// app.use(cors({ origin: 'https://wow-helper.laurentarcos.fr', optionsSuccessStatus: 200 }));
 
 // Swagger Configuration
 const swaggerOptions = {
@@ -56,6 +56,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
-  console.log(`  🟢 Server is running on port ${PORT}`);
-  console.log(`  📘 Swagger API documentation available at http://localhost:${PORT}/api-docs`);
+  console.log( ` 🟢 Server is running on port ${PORT}`);
+  console.log(`  📘 Swagger API documentation available at https://wow-helper.laurentarcos.fr/api-docs/`);
 });
